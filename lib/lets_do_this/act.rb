@@ -1,7 +1,7 @@
 require 'lets_do_this/errors'
 
 module LetsDoThis
-  class Command
+  class Act
     attr_accessor :performed, :errors, :result
 
     def initialize
@@ -9,14 +9,14 @@ module LetsDoThis
       @errors = Errors.new
     end
 
-    def instructions(_state)
+    def instructions(_stage)
       raise NotImplementedError
     end
 
-    def follow_instructions!(state)
+    def follow_instructions!(stage)
       tap do
         _1.performed = true
-        instructions_ = instructions(state)
+        instructions_ = instructions(stage)
         _1.result = instructions_.is_a?(Hash) ? instructions_ : {}
       end
     end
