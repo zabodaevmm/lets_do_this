@@ -2,6 +2,8 @@ require 'lets_do_this/errors'
 
 module LetsDoThis
   class Act
+    NOTHING_NEW = {}.freeze
+
     attr_accessor :performed, :errors, :result
 
     def initialize
