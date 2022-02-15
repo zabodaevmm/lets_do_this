@@ -3,7 +3,7 @@ require 'ostruct'
 
 module LetsDoThis
   class Scenario
-    attr_reader :act_sequence
+    attr_reader :act_sequence, :errors
 
     ACT_SEQUENCE = [].freeze
     STAGE_ATTRS_WHITELIST = %i[].freeze
@@ -24,7 +24,7 @@ module LetsDoThis
       @act_sequence.each do
         act = _1.follow_instructions!(stage)
         unless act.success?
-          @errors.add(act.class.name, act.errors)
+          @errors.add_some(act.errors)
           break
         end
 
